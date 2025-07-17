@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dungeons & Dragons - Character Creation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            color: #d4af37;
+            font-family: 'Crimson Text', serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #d4af37, #ffd700, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #b8860b;
+            font-style: italic;
+        }
+
+        .content-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+            border-radius: 15px;
+            border: 1px solid #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .intro-text {
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: #f4e4bc;
+        }
+
+        .video-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        video {
+            max-width: 500px;
+            max-height: 500px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .form-section {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #d4af37;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.8) 100%);
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            color: #f4e4bc;
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+        }
+
+        select option {
+            background: #1a1a1a;
+            color: #f4e4bc;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #d4af37, #ffd700, #d4af37);
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #ffd700, #d4af37, #ffd700);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #d4af37;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .content-section, .form-section {
+                padding: 15px;
+                margin-bottom: 30px;
+            }
+            
+            .intro-text {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            video {
+                max-width: 100%;
+                max-height: 300px;
+            }
+            
+            label {
+                font-size: 1rem;
+            }
+            
+            select, input, textarea {
+                padding: 10px 12px;
+                font-size: 0.95rem;
+            }
+            
+            .submit-btn {
+                padding: 12px;
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 5px;
+            }
+            
+            .content-section, .form-section {
+                padding: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .intro-text {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            video {
+                max-height: 250px;
+            }
+            
+            .submit-btn {
+                padding: 10px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dungeons & Dragons</h1>
+            <p class="subtitle">Character Creation Portal --- by rluzzion_studios</p>
+        </header>
+
+        <div class="content-section">
+            <p class="intro-text">
+                Hallo luitjes. Op deze pagina gaan jullie een klasse en ras kiezen voor je karakter.
+                In twee korte filmpjes die ik gemaakt hebt voor jullie (met lekker ongemakkelijke audio HAHAHA), help ik je daarbij.
+                Vul het formulier in en druk onderaan op 'Begin your adventure'.
+                <br>
+                PS Houd deze keuze geheim voor de rest van de groep (dus ook je partner, broer, zus).
+                Als er dubbelingen zijn, neem ik wel contact op met de betreffende persoon/personen.
+                Dit is het enige wat je hoeft voor te bereiden, de rest regel ik.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <div class="section-title">Character Classes</div>
+            <div class="video-container">
+                <iframe src="https://drive.google.com/file/d/19n3tvdGKoAExTYSiSHvyNi9fdbq7mrAB/preview" width="500" height="500" allow="autoplay"></iframe>
+            </div>
+        </div>
+
+        <form action="https://formspree.io/f/xnnznppo" method="POST" class="form-section">
+            <div class="form-group">
+                <label for="character-class">Choose Your Character Class:</label>
+                <select id="character-class" name="character-class" required>
+                    <option value="">Select a class...</option>
+                    <option value="barbarian">Barbarian</option>
+                    <option value="bard">Bard</option>
+                    <option value="cleric">Cleric</option>
+                    <option value="druid">Druid</option>
+                    <option value="fighter">Fighter</option>
+                    <option value="monk">Monk</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="ranger">Ranger</option>
+                    <option value="rogue">Rogue</option>
+                    <option value="sorcerer">Sorcerer</option>
+                    <option value="warlock">Warlock</option>
+                    <option value="wizard">Wizard</option>
+                </select>
+            </div>
+        </form>
+
+        <div class="content-section">
+            <div class="section-title">Character Races</div>
+            <div class="video-container">
+                <iframe src="https://drive.google.com/file/d/1NZF75vieLeldarp9COUwMTECJAd1Edq4/preview" width="500" height="500" allow="autoplay"></iframe>
+            </div>
+        </div>
+
+        <form action="https://formspree.io/f/xnnznppo" method="POST" class="form-section">
+            <div class="form-group">
+                <label for="character-race">Choose Your Character Race:</label>
+                <select id="character-race" name="character-race" required>
+                    <option value="">Select a race...</option>
+                    <option value="dragonborn">Dragonborn</option>
+                    <option value="dwarf">Dwarf</option>
+                    <option value="elf">Elf</option>
+                    <option value="gnome">Gnome</option>
+                    <option value="halfling">Halfling</option>
+                    <option value="human">Human</option>
+                    <option value="orc">Orc</option>
+                    <option value="tiefling">Tiefling</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="character-name">Je naam:</label>
+                <select id="character-name" name="character-name" required>
+                    <option value="">Selecteer je naam...</option>
+                    <option value="player1">Liz</option>
+                    <option value="player2">Kenny</option>
+                    <option value="player3">Eli</option>
+                    <option value="player4">Michelle</option>
+                    <option value="player5">Daniek</option>
+                    <option value="player6">Rick</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="character-story">Overige opmerkingen</label>
+                <textarea id="character-story" name="character-story" placeholder="Geef hier je eventuele tweede of derde keuzes op..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Begin Your Adventure</button>
+        </form>
+    </div>
+</body>
+</html>
