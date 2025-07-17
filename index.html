@@ -48,7 +48,7 @@
             text-align: center;
             margin-bottom: 40px;
             padding: 40px 0;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(0, 0, 0, 0.9) 100%);
             border-radius: 15px;
             border: 2px solid #d4af37;
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
@@ -64,13 +64,15 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: #d4af37;
         }
 
         .subtitle {
             font-family: 'Cinzel', serif;
             font-size: 1.2rem;
-            color: #b8860b;
+            color: #d4af37;
             font-style: italic;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
         }
 
         .content-section {
@@ -320,6 +322,15 @@
             </div>
         </div>
 
+
+
+        <div class="content-section">
+            <div class="section-title">Character Races</div>
+            <div class="video-container">
+                <iframe src="https://drive.google.com/file/d/1NZF75vieLeldarp9COUwMTECJAd1Edq4/preview" width="500" height="500" allow="autoplay" frameborder="0"></iframe>
+            </div>
+        </div>
+
         <form action="https://formspree.io/f/xnnznppo" method="POST" class="form-section">
             <div class="form-group">
                 <label for="character-class">Choose Your Character Class:</label>
@@ -339,16 +350,7 @@
                     <option value="wizard">Wizard</option>
                 </select>
             </div>
-        </form>
 
-        <div class="content-section">
-            <div class="section-title">Character Races</div>
-            <div class="video-container">
-                <iframe src="https://drive.google.com/file/d/1NZF75vieLeldarp9COUwMTECJAd1Edq4/preview" width="500" height="500" allow="autoplay"></iframe>
-            </div>
-        </div>
-
-        <form action="https://formspree.io/f/xnnznppo" method="POST" class="form-section">
             <div class="form-group">
                 <label for="character-race">Choose Your Character Race:</label>
                 <select id="character-race" name="character-race" required>
@@ -368,12 +370,12 @@
                 <label for="character-name">Je naam:</label>
                 <select id="character-name" name="character-name" required>
                     <option value="">Selecteer je naam...</option>
-                    <option value="player1">Liz</option>
-                    <option value="player2">Kenny</option>
-                    <option value="player3">Eli</option>
-                    <option value="player4">Michelle</option>
-                    <option value="player5">Daniek</option>
-                    <option value="player6">Rick</option>
+                    <option value="liz">Liz</option>
+                    <option value="kenny">Kenny</option>
+                    <option value="eli">Eli</option>
+                    <option value="michelle">Michelle</option>
+                    <option value="daniek">Daniek</option>
+                    <option value="rick">Rick</option>
                 </select>
             </div>
 
